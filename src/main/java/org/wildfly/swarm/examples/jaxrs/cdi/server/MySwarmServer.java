@@ -1,34 +1,54 @@
 package org.wildfly.swarm.examples.jaxrs.cdi.server;
 
-import org.jboss.shrinkwrap.api.Archive;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.ClassLoaderAsset;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.wildfly.swarm.Swarm;
 import org.wildfly.swarm.datasources.DatasourcesFraction;
+import org.wildfly.swarm.jaxrs.JAXRSArchive;
+import org.wildfly.swarm.jpa.postgresql.PostgreSQLJPAFraction;
+import org.wildfly.swarm.transactions.TransactionsFraction;
 
 public class MySwarmServer {
+    // https://github.com/kissaten/wildfly-swarm-jpa-jaxrs/blob/master/src/main/java/com/example/Main.java
 
     public static final String DEFAULT_PORT = "8080";
 
     public static void main(String[] args) throws Exception {
         System.getProperties().setProperty("java.net.preferIPv4Stack", "true");
         System.getProperties().setProperty("swarm.http.port", getServerPort());
+        // -Dswarm.logging=DEBUG
 
         Swarm container = new Swarm();
 
+        container.fraction(TransactionsFraction.createDefaultFraction());
+
         container.fraction(new DatasourcesFraction()
-            .jdbcDriver("postgresql", (d) -> {
-                d.driverClassName("org.postgresql.Driver");
-                d.xaDatasourceClass("org.postgresql.xa.PGXADataSource");
-                d.driverModuleName("org.postgresql");
-            })
-            .dataSource("ExampleDS", (ds) -> {
-                ds.driverName("postgresql");
-                ds.connectionUrl(getJdbcDatabaseUrl());
-            })
+                .jdbcDriver("postgresql", (d) -> {
+                    d.driverClassName("org.postgresql.Driver");
+                    d.xaDatasourceClass("org.postgresql.xa.PGXADataSource");
+                    d.driverModuleName("org.postgresql");
+                })
+                .dataSource("ExampleDS", (ds) -> {
+                    ds.driverName("postgresql");
+                    ds.connectionUrl(getJdbcDatabaseUrl());
+                })
         );
 
-        Archive<?> defaultDeployment = container.createDefaultDeployment();
         container.start();
-        container.deploy(defaultDeployment);
+
+        JAXRSArchive archive = ShrinkWrap.create(JAXRSArchive.class)
+                .addPackages( true, "org.superbiz", "org.wildfly.swarm.examples.jaxrs.cdi")
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsWebInfResource(new ClassLoaderAsset("META-INF/persistence.xml", MySwarmServer.class.getClassLoader()), "classes/META-INF/persistence.xml")
+                .addAllDependencies();
+
+        container.fraction(new PostgreSQLJPAFraction()
+                .inhibitDefaultDatasource()
+                .defaultDatasource("jboss/datasources/ExampleDS")
+        );
+
+        container.deploy(archive);
     }
 
     private static String getServerPort() {

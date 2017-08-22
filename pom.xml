@@ -39,7 +39,7 @@
                 <artifactId>wildfly-swarm-plugin</artifactId>
                 <version>${version.wildfly.swarm}</version>
                 <configuration>
-                    <!--<mainClass>org.wildfly.swarm.examples.jaxrs.cdi.server.MySwarmServer</mainClass>-->
+                    <mainClass>org.wildfly.swarm.examples.jaxrs.cdi.server.MySwarmServer</mainClass>
                     <properties>
                         <java.net.preferIPv4Stack>true</java.net.preferIPv4Stack>
                     </properties>
