@@ -1,0 +1,16 @@
+h1 {
+  font-family: helvetica;
+  font-weight: 200;
+}
+
+.muj-styl {
+  background-color: green;
+}
+
+.chyba {
+  border: 2px solid red;
+}
+
+/* * {
+  border-radius: 1 !important;
+}*/
