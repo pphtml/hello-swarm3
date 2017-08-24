@@ -1,4 +1,4 @@
-package org.wildfly.swarm.examples.jaxrs.cdi.domain.model;
+package org.superbiz.model;
 
 import java.io.Serializable;
 

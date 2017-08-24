@@ -1,11 +1,11 @@
-package org.wildfly.swarm.examples.jaxrs.cdi.domain.service;
+package org.superbiz.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import org.wildfly.swarm.examples.jaxrs.cdi.domain.model.Employee;
+import org.superbiz.model.Employee;
 
 @ApplicationScoped
 public class EmployeeService {

@@ -1,4 +1,4 @@
-package org.wildfly.swarm.examples.jaxrs.cdi.api;
+package org.superbiz.api;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

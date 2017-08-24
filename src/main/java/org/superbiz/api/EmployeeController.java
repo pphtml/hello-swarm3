@@ -1,4 +1,4 @@
-package org.wildfly.swarm.examples.jaxrs.cdi.api;
+package org.superbiz.api;
 
 import java.util.Date;
 import java.util.List;
@@ -13,8 +13,8 @@ import javax.ws.rs.core.MediaType;
 
 import org.superbiz.Note;
 import org.superbiz.NoteDAO;
-import org.wildfly.swarm.examples.jaxrs.cdi.domain.model.Employee;
-import org.wildfly.swarm.examples.jaxrs.cdi.domain.service.EmployeeService;
+import org.superbiz.model.Employee;
+import org.superbiz.service.EmployeeService;
 
 @Path("/employees")
 @Stateless

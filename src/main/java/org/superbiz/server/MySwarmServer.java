@@ -1,4 +1,4 @@
-package org.wildfly.swarm.examples.jaxrs.cdi.server;
+package org.superbiz.server;
 
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.ClassLoaderAsset;
@@ -41,9 +41,10 @@ public class MySwarmServer {
                 .addPackages( true, "org.superbiz", "org.wildfly.swarm.examples.jaxrs.cdi")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsWebInfResource(new ClassLoaderAsset("META-INF/persistence.xml", MySwarmServer.class.getClassLoader()), "classes/META-INF/persistence.xml")
-                .addAllDependencies();
+                .staticContent("static")
+                .addAllDependencies(); // TODO remove ?
 
-        container.fraction(new PostgreSQLJPAFraction()
+        container.fraction(new PostgreSQLJPAFraction() // TODO remove ?
                 .inhibitDefaultDatasource()
                 .defaultDatasource("jboss/datasources/ExampleDS")
         );
