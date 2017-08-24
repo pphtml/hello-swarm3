@@ -1,4 +1,4 @@
-package org.superbiz;
+package org.superbiz.model;
 
 import javax.persistence.*;
 import java.util.Date;

@@ -11,8 +11,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.superbiz.Note;
-import org.superbiz.NoteDAO;
+import org.superbiz.model.Note;
+import org.superbiz.service.NoteDAO;
 import org.superbiz.model.Employee;
 import org.superbiz.service.EmployeeService;
 

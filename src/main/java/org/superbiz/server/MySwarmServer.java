@@ -21,7 +21,7 @@ public class MySwarmServer {
 
         Swarm container = new Swarm();
 
-        container.fraction(TransactionsFraction.createDefaultFraction());
+        // container.fraction(TransactionsFraction.createDefaultFraction());
 
         container.fraction(new DatasourcesFraction()
                 .jdbcDriver("postgresql", (d) -> {
@@ -38,17 +38,10 @@ public class MySwarmServer {
         container.start();
 
         JAXRSArchive archive = ShrinkWrap.create(JAXRSArchive.class)
-                .addPackages( true, "org.superbiz", "org.wildfly.swarm.examples.jaxrs.cdi")
+                .addPackages( true, "org.superbiz")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsWebInfResource(new ClassLoaderAsset("META-INF/persistence.xml", MySwarmServer.class.getClassLoader()), "classes/META-INF/persistence.xml")
-                .staticContent("static")
-                .addAllDependencies(); // TODO remove ?
-
-        container.fraction(new PostgreSQLJPAFraction() // TODO remove ?
-                .inhibitDefaultDatasource()
-                .defaultDatasource("jboss/datasources/ExampleDS")
-        );
-
+                .staticContent("static");
         container.deploy(archive);
     }
 

@@ -6,6 +6,8 @@
 
     <title>Hello world</title>
 
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
 
 </head>
@@ -14,12 +16,6 @@
 
 <div id="app-7">
     <ol>
-        <!--
-          Now we provide each todo-item with the todo object
-          it's representing, so that its content can be dynamic.
-          We also need to provide each component with a "key",
-          which will be explained later.
-        -->
         <todo-item
                 v-for="item in groceryList"
                 v-bind:todo="item"
@@ -28,6 +24,7 @@
     </ol>
 </div>
 
+<script src="js/bootstrap.min.js"></script>
 <script src="js/vue.js"></script>
 <script src="js/scripts.js"></script>
 </body>

@@ -1,4 +1,6 @@
-package org.superbiz;
+package org.superbiz.service;
+
+import org.superbiz.model.Note;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

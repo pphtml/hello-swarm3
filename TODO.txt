@@ -1,0 +1,9 @@
+- logger
+- vue.min.js logika
+- sablona
+- sesna
+- prihlaseni pres OpenID
+- integracni testy
+- persistence dat v databazi
+- generovani SQL JPA
+- listovani kategorii prikladu
