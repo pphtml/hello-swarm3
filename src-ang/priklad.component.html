@@ -1,0 +1,5 @@
+<small>{{priklad.getInstrukce()}}</small>
+
+<h4>{{priklad.getTextUlohy()}}</h4>
+
+<input type="text" class="form-control" [class.chyba]="priklad.uloha.chyba" [(ngModel)]="priklad.uloha.zadanyVysledek" />

@@ -1,0 +1,33 @@
+<h3>Výběr zkoušených oblastí</h3>
+<hr/>
+<form>
+    <fieldset>
+        
+      <div class="form-group row">
+        <label for="pocetPrikladu" class="col-sm-2 control-label">Počet příkladů</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="pocetPrikladu" [(ngModel)]="pocetPrikladu">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 control-label">Oblasti</label>
+        <div class="col-sm-10">
+            <div class="row">
+                <div class="col-sm-3" *ngFor="let typUlohy of typyUloh">
+                    <div class="checkbox">
+                        <label attr.for="{{typUlohy.typUlohy}}">
+                        <input type="checkbox" id="{{typUlohy.typUlohy}}" value="{{typUlohy.typUlohy}}" [(ngModel)]="typUlohy.vybrano">{{typUlohy.typUlohyText}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-offset-2 col-sm-10">
+          <a class="btn btn-primary" [class.disabled]="neniVybranaZadnaOblast()" (click)="spustitZkouseni()">Spustit zkoušení</a>
+        </div>
+      </div>
+    </fieldset>
+</form>

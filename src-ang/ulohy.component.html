@@ -1,0 +1,27 @@
+<div class="row">
+  <a [routerLink]="['Vyber']">Zpět na výběr zkoušených oblastí</a>
+</div>
+<div class="row">
+  <div *ngFor="let priklad of priklady" class="col-xs-6 col-sm-4 col-md-3">
+    <div class="thumbnail"><priklad [priklad]="priklad"></priklad></div>
+  </div>
+</div>
+
+<p>
+  <button type="button" class="btn btn-primary btn-lg" [class.disabled]="!jeVseVyplneno()" (click)="zkontroluj()" (keypress)="zkontroluj()">Zkontroluj</button>
+</p>
+
+<div *ngIf="zkontrolovano">
+<div *ngIf="pocetChyb === 0" class="alert alert-success" role="alert">
+    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+    Gratuluji! Máš vše správně!
+</div>
+<div *ngIf="pocetChyb === 1" class="alert alert-warning" role="alert">
+    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+    Chybička se vloudila. Oprav si ji.
+</div>
+<div *ngIf="pocetChyb > 1" class="alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    Máš {{pocetChyb}} {{pocetChyb < 5 ? 'chyby' : 'chyb'}}. Oprav je.
+</div>
+</div>
