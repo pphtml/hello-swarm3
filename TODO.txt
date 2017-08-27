@@ -7,3 +7,4 @@
 - persistence dat v databazi
 - generovani SQL JPA
 - listovani kategorii prikladu
+- https://bootswatch.com/united/

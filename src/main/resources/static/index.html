@@ -14,15 +14,17 @@
 
 <body>
 
-<div id="app-7">
-    <ol>
-        <todo-item
-                v-for="item in groceryList"
-                v-bind:todo="item"
-                v-bind:key="item.id">
-        </todo-item>
-    </ol>
-</div>
+<ul id="repeat-object" class="demo">
+    <div class="container">
+        <div class="row">
+            <template v-for="(value, key) in exercises">
+                <!--{{ key }} : {{ value }}-->
+                <card :title="value.title"></card>
+            </template>
+        </div>
+    </div>
+</ul>
+
 
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
