@@ -1,8 +1,9 @@
-- logger
 - vue.min.js logika
 - sablona
 - sesna
 - prihlaseni pres OpenID
+  - https://oneminutedistraction.wordpress.com/2014/04/29/using-oauth-for-your-javaee-login/
+  - https://github.com/trajano/openid-connect
 - integracni testy
 - persistence dat v databazi
 - generovani SQL JPA

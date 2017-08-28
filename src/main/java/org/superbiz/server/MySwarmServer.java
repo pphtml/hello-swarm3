@@ -40,7 +40,8 @@ public class MySwarmServer {
         JAXRSArchive archive = ShrinkWrap.create(JAXRSArchive.class)
                 .addPackages( true, "org.superbiz")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
-                .addAsWebInfResource(new ClassLoaderAsset("META-INF/persistence.xml", MySwarmServer.class.getClassLoader()), "classes/META-INF/persistence.xml")
+                //.addAsWebInfResource(new ClassLoaderAsset("META-INF/persistence.xml", MySwarmServer.class.getClassLoader()), "classes/META-INF/persistence.xml")
+                .addAsWebInfResource(()->MySwarmServer.class.getResourceAsStream("/META-INF/persistence.xml"), "classes/META-INF/persistence.xml")
                 .staticContent("static");
         container.deploy(archive);
     }

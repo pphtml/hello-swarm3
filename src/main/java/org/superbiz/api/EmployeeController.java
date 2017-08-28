@@ -2,6 +2,7 @@ package org.superbiz.api;
 
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -27,12 +28,16 @@ public class EmployeeController {
     @Inject
     NoteDAO noteDAO;
 
+    @Inject
+    private Logger logger;
+
     @GET
     @Path("all")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Employee> findAll() {
+        logger.info("Find all");
         List<Employee> results = employeeService.findAll();
-        System.err.println(results);
+        logger.info(String.format("Employees: %s", results));
         return results;
     }
 
