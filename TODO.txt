@@ -5,7 +5,7 @@
   - https://oneminutedistraction.wordpress.com/2014/04/29/using-oauth-for-your-javaee-login/
   - https://github.com/trajano/openid-connect
 - integracni testy
-- persistence dat v databazi
-- generovani SQL JPA
+- persistence dat v databazi - check existujici databaze
+- generovani SQL JPA v mavenu
 - listovani kategorii prikladu
 - https://bootswatch.com/united/
