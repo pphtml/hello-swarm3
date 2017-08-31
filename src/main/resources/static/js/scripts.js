@@ -13,62 +13,30 @@ Vue.component('card', {
     '            </div>' +
     '</div>' +
     ''
-})
-
-
-// var app7 = new Vue({
-//     el: '#app-7',
-//     data: {
-//         groceryList: [
-//             { id: 0, text: 'Vegetables' },
-//             { id: 1, text: 'Cheese' },
-//             { id: 2, text: 'Whatever else humans are supposed to eat' }
-//         ]
-//     }
-// });
-
-/*new Vue({
-    el: '#repeat-object',
-    data: {
-        exercises: [
-            {
-                title: 'Sčítání'
-            },
-            {
-                title: 'Odčítání'
-            },
-            {
-                title: 'Násobení'
-            },
-            {
-                title: 'Dělení'
-            }
-        ],
-        object: {
-            firstName: 'John',
-            lastName: 'Doe',
-            age: 30
-        }
-    }
-});*/
+});
 
 // 1. Define route components.
 // These can be imported from other files
 const Foo = { template: '<div>foo</div>' }
 const Bar = { template: '<div>bar</div>' }
 const Choice = {
-    template: '<div>Name:{{name}}<br>Pone:{{phone}}</div>',
+    template:
+    '      <div class="row">' +
+    '          <template v-for="(value, key) in categories">\n' +
+    '              <card :title="value.name"></card>\n' +
+    '          </template>\n' +
+    '      </div>',
     data () {
         return {
-            name: undefined,
-            phone: undefined
+            categories: undefined,
         }
     },
     beforeRouteEnter (to, from, next) {
         axios.get('/api/category/all').then(response => {
             next(vm => {
-                vm.name = 'abc'; //response.data.name
-                vm.phone = 'def'; //response.data.phone
+                // vm.name = 'abc'; //response.data.name
+                // vm.phone = 'def'; //response.data.phone
+                vm.categories = response.data;
                 console.info(response.data);
             })
         })
