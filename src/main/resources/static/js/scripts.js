@@ -65,24 +65,13 @@ const Choice = {
         }
     },
     beforeRouteEnter (to, from, next) {
-        axios.post('http://schematic-ipsum.herokuapp.com/', {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "ipsum": "name"
-                },
-                "phone": {
-                    "type": "string",
-                    "format": "phone"
-                }
-            }
-        }).then(response => {
+        axios.get('/api/category/all').then(response => {
             next(vm => {
-            vm.name = response.data.name
-        vm.phone = response.data.phone
-    })
-    })
+                vm.name = 'abc'; //response.data.name
+                vm.phone = 'def'; //response.data.phone
+                console.info(response.data);
+            })
+        })
     }
 }
 

@@ -1,4 +1,4 @@
-package org.superbiz.service;
+package org.superbiz.dao;
 
 import org.superbiz.model.Note;
 

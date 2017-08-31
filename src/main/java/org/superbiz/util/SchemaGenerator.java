@@ -19,7 +19,7 @@ import java.util.Properties;
 
 
 public class SchemaGenerator {
-//    public static void main(String[] args) {
+    //    public static void main(String[] args) {
 //        Persistence.generateSchema("myapp-unit", null);
 //    }
 
@@ -32,8 +32,9 @@ public class SchemaGenerator {
 
     public static void execute(String persistenceUnitName, String destination) {
         try {
+            Path path = FileSystems.getDefault().getPath(destination);
             try {
-                Files.delete(FileSystems.getDefault().getPath(destination));
+                Files.delete(path);
             } catch (NoSuchFileException e) {
             }
 
@@ -59,6 +60,9 @@ public class SchemaGenerator {
 //        //entityManagerFactory.getJpaVendorAdapter().getPersistenceProvider().generateSchema(entityManagerFactory.getPersistenceUnitInfo(), persistenceProperties);
             //EntityManagerFactory emf = Persistence.createEntityManagerFactory(persistenceUnitName);
             Persistence.generateSchema(persistenceUnitName, persistenceProperties);
+
+            String schema = new String(Files.readAllBytes(path));
+            System.err.println(schema);
 
         } catch (IOException e) {
             e.printStackTrace();
