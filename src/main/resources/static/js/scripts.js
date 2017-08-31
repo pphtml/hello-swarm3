@@ -17,27 +17,36 @@ Vue.component('card', {
 
 // 1. Define route components.
 // These can be imported from other files
-const Foo = { template: '<div>foo</div>' }
 const Bar = { template: '<div>bar</div>' }
 const Choice = {
-    template:
-    '      <div class="row">' +
-    '          <template v-for="(value, key) in categories">\n' +
-    '              <card :title="value.name"></card>\n' +
-    '          </template>\n' +
-    '      </div>',
+    template: `<div>
+<div class="row">
+    <template v-for="(category, key) in categories">
+        <input type="checkbox" v-bind:id="category.id" v-bind:value="category.id" v-model="selectedCategories">
+        <label v-bind:for="category.id">{{category.name}}</label><br/>
+    </template>
+</div>
+<div class="row">
+    <button type="button" class="btn btn-primary" v-on:click="selectedHandler">OK</button>
+</div>
+</div>`,
     data () {
         return {
             categories: undefined,
+            selectedCategories: []
+        }
+    },
+    methods: {
+        selectedHandler: function () {
+            // this.counter += 1
+            // this.$emit('increment')
+            console.info(`inside my method: ${this.selectedCategories}`);
         }
     },
     beforeRouteEnter (to, from, next) {
         axios.get('/api/category/all').then(response => {
             next(vm => {
-                // vm.name = 'abc'; //response.data.name
-                // vm.phone = 'def'; //response.data.phone
                 vm.categories = response.data;
-                console.info(response.data);
             })
         })
     }
