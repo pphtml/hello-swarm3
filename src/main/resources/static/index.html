@@ -3,15 +3,10 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-
-    <title>Hello world</title>
-
-
+    <title>Matematika</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
-
 </head>
-
 <body>
 
 <!--<ul id="repeat-object" class="demo">-->
@@ -26,17 +21,40 @@
 <!--</ul>-->
 
 <div id="app">
-    <h1>Hello App!</h1>
-    <p>
-        <!-- use router-link component for navigation. -->
-        <!-- specify the link by passing the `to` prop. -->
-        <!-- `<router-link>` will be rendered as an `<a>` tag by default -->
-        <router-link to="/foo">Go to Foo</router-link>
-        <router-link to="/bar">Go to Bar</router-link>
-    </p>
-    <!-- route outlet -->
-    <!-- component matched by the route will render here -->
-    <router-view></router-view>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Matematika</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Přehled</a></li>
+                    <li><router-link to="/choice">Výběr příkladů</router-link></li>
+                    <li><router-link to="/bar">Statistika</router-link></li>
+                    <li><a href="#">Stores</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container">
+        <div class="row">
+            <router-view></router-view>
+        </div>
+    </div><br><br>
+
+    <!--<footer class="container-fluid text-center"></footer>-->
 </div>
 
 
@@ -44,6 +62,7 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/vue.js"></script>
 <script src="js/vue-router.js"></script>
+<script src="js/axios.js"></script>
 <script src="js/scripts.js"></script>
 </body>
 </html>

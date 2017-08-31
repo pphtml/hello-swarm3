@@ -1,3 +1,7 @@
+Vue.component('choice', {
+    template: '<div>Výběr příkladů!</div>'
+})
+
 Vue.component('card', {
     props: ['title'],
     template: '' +
@@ -52,6 +56,35 @@ Vue.component('card', {
 // These can be imported from other files
 const Foo = { template: '<div>foo</div>' }
 const Bar = { template: '<div>bar</div>' }
+const Choice = {
+    template: '<div>Name:{{name}}<br>Pone:{{phone}}</div>',
+    data () {
+        return {
+            name: undefined,
+            phone: undefined
+        }
+    },
+    beforeRouteEnter (to, from, next) {
+        axios.post('http://schematic-ipsum.herokuapp.com/', {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "ipsum": "name"
+                },
+                "phone": {
+                    "type": "string",
+                    "format": "phone"
+                }
+            }
+        }).then(response => {
+            next(vm => {
+            vm.name = response.data.name
+        vm.phone = response.data.phone
+    })
+    })
+    }
+}
 
 // 2. Define some routes
 // Each route should map to a component. The "component" can
@@ -59,7 +92,7 @@ const Bar = { template: '<div>bar</div>' }
 // `Vue.extend()`, or just a component options object.
 // We'll talk about nested routes later.
 const routes = [
-    { path: '/foo', component: Foo },
+    { path: '/choice', component: Choice },
     { path: '/bar', component: Bar }
 ]
 

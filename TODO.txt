@@ -9,3 +9,4 @@
 - generovani SQL JPA v mavenu
 - listovani kategorii prikladu
 - https://bootswatch.com/united/
+- automaticky ping
