@@ -1,6 +1,6 @@
-Vue.component('choice', {
-    template: '<div>Výběr příkladů!</div>'
-})
+// Vue.component('ulohy', {
+//     template: '<div>Výběr příkladů!</div>'
+// })
 
 Vue.component('card', {
     props: ['title'],
@@ -17,9 +17,21 @@ Vue.component('card', {
 
 // 1. Define route components.
 // These can be imported from other files
-const Bar = { template: '<div>bar</div>' }
-const Choice = {
+const Bar = {
+    template: '<div>bar 12345</div>',
+    props: {},
+    created() {
+        console.info('Bar created');
+        app.$on('classes-selected', function (data) {
+            console.info(data);
+        });
+    }
+    //busapp.$on('id-selected', function (id) {
+};
+
+const Ulohy = {
     template: `<div>
+<h2>Výběr třídy</h2>
 <div class="row">
     <template v-for="(category, key) in categories">
         <input type="checkbox" v-bind:id="category.id" v-bind:value="category.id" v-model="selectedCategories">
@@ -38,9 +50,13 @@ const Choice = {
     },
     methods: {
         selectedHandler: function () {
-            // this.counter += 1
             // this.$emit('increment')
             console.info(`inside my method: ${this.selectedCategories}`);
+            app.selected = this.selectedCategories;
+            console.info(app.selected);
+            app.$emit('classes-selected', [1, 2, 3, 4])
+            this.$router.push({name: 'bar'});
+            //this.$router.push({name: 'bar', params: {bbb: [5, 4, 3] }});
         }
     },
     beforeRouteEnter (to, from, next) {
@@ -58,20 +74,26 @@ const Choice = {
 // `Vue.extend()`, or just a component options object.
 // We'll talk about nested routes later.
 const routes = [
-    { path: '/choice', component: Choice },
-    { path: '/bar', component: Bar }
+    { path: '/ulohy', component: Ulohy },
+    { path: '/bar', name: 'bar', component: Bar }
+    //{ path: '/bar', name: 'bar', component: Bar, props: {bbb: [1, 2, 3]} }
 ]
 
 // 3. Create the router instance and pass the `routes` option
 // You can pass in additional options here, but let's
 // keep it simple for now.
 const router = new VueRouter({
-    routes: routes // short for `routes: routes`
+    // mode: 'history',
+    routes, // short for `routes: routes`,
+    linkActiveClass: 'active'
 })
 
 // 4. Create and mount the root instance.
 // Make sure to inject the router with the router option to make the
 // whole app router-aware.
 const app = new Vue({
-    router: router
+    router: router,
+    data: {
+        selected: []
+    }
 }).$mount('#app')

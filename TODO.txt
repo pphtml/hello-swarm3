@@ -1,5 +1,5 @@
-- vue.min.js logika
-- sablona
+- listovani kategorii prikladu
+- zvyraznit vybranou kategorii
 - sesna
 - prihlaseni pres OpenID
   - https://oneminutedistraction.wordpress.com/2014/04/29/using-oauth-for-your-javaee-login/
@@ -7,6 +7,8 @@
 - integracni testy
 - persistence dat v databazi - check existujici databaze
 - generovani SQL JPA v mavenu
-- listovani kategorii prikladu
 - https://bootswatch.com/united/
 - automaticky ping
+- SPA servlet
+- dev/prod -> webpack -> *.min.js, vue.min.js
+- passing params as props: https://codepen.io/patrickodacre/pen/zxwWPO/
